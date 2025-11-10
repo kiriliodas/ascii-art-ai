@@ -1,9 +1,8 @@
-# ---- PyTorch CPU (doit être en premier, sans index) ----
-torch==2.4.1+cpu
-torchaudio==2.4.1+cpu   # optionnel, on ne l’utilise pas mais évite les erreurs
-torchvision==0.19.1+cpu # optionnel
+--index-url https://download.pytorch.org/whl/cpu
+torch==2.5.0
+torchaudio==2.5.0
+torchvision==0.20.0
 
-# ---- Les autres paquets (installés depuis PyPI normal) ----
 streamlit
 transformers
 datasets
