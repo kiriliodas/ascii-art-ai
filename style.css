@@ -186,6 +186,9 @@ kbd {
 .icon-btn {
   width: 40px;
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--bg-soft);
   color: var(--text);
   border: 1px solid var(--border);
@@ -193,6 +196,15 @@ kbd {
   cursor: pointer;
   font-size: 13px;
   transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+/* dot-matrix glyph icons */
+.btn svg,
+.icon-btn svg {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
 }
 
 .icon-btn:hover { border-color: var(--accent); color: var(--accent-light); background: var(--accent-soft); }
@@ -229,6 +241,10 @@ kbd {
 }
 
 .font-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: 7px 12px;
   cursor: pointer;
   font-family: var(--mono);
@@ -240,7 +256,17 @@ kbd {
 .font-item.active { background: var(--accent-soft); }
 
 .font-item.current { color: var(--accent-light); }
-.font-item.current::after { content: " ✓"; }
+
+.font-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.font-check {
+  display: inline-flex;
+  flex: none;
+  color: var(--accent);
+}
 
 .font-item mark { background: none; color: var(--accent-light); font-weight: 700; }
 
@@ -393,6 +419,9 @@ kbd {
   left: 50%;
   bottom: 30px;
   transform: translate(-50%, 16px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: #1b2530;
   border: 1px solid var(--border);
   color: var(--text);
@@ -404,6 +433,11 @@ kbd {
   transition: opacity 0.22s, transform 0.22s;
   z-index: 60;
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+}
+
+.toast-icon {
+  display: inline-flex;
+  color: var(--accent);
 }
 
 #toast.show { opacity: 1; transform: translate(-50%, 0); }

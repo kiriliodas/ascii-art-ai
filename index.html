@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASCII Studio — Text to ASCII Art</title>
   <meta name="description" content="Turn any text into ASCII art with 300+ font styles. Live preview, one-click copy, and export to TXT, PNG, SVG or HTML.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230d1117'/><text x='50' y='70' font-size='58' text-anchor='middle' font-family='monospace' fill='%233fb950'>A</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,13 +31,13 @@
             <input id="font-input" type="text" autocomplete="off" spellcheck="false"
                    role="combobox" aria-expanded="false" aria-controls="font-list"
                    aria-autocomplete="list" placeholder="Search fonts…">
-            <button id="font-prev" class="icon-btn" type="button" title="Previous font" aria-label="Previous font">◀</button>
-            <button id="font-random" class="icon-btn" type="button" title="Random font" aria-label="Random font">🎲</button>
-            <button id="font-next" class="icon-btn" type="button" title="Next font" aria-label="Next font">▶</button>
+            <button id="font-prev" class="icon-btn" type="button" data-icon="chev-left" title="Previous font" aria-label="Previous font"></button>
+            <button id="font-random" class="icon-btn" type="button" data-icon="dice" title="Random font" aria-label="Random font"></button>
+            <button id="font-next" class="icon-btn" type="button" data-icon="chev-right" title="Next font" aria-label="Next font"></button>
           </div>
           <div id="font-list" class="font-list" role="listbox" aria-label="Fonts"></div>
         </div>
-        <p class="hint">Search, or use ◀ 🎲 ▶ to browse styles</p>
+        <p class="hint">Search, or browse styles with the arrow &amp; dice buttons</p>
       </div>
 
       <div class="field">
@@ -82,12 +82,12 @@
       </div>
 
       <div class="actions">
-        <button id="copy" class="btn primary" type="button">📋 Copy</button>
+        <button id="copy" class="btn primary" type="button" data-icon="copy">Copy</button>
         <span class="spacer" aria-hidden="true"></span>
-        <button id="export-txt" class="btn" type="button" title="Download as plain text">⬇ .txt</button>
-        <button id="export-png" class="btn" type="button" title="Download as PNG image">⬇ .png</button>
-        <button id="export-svg" class="btn" type="button" title="Download as SVG image">⬇ .svg</button>
-        <button id="export-html" class="btn" type="button" title="Download as standalone HTML page">⬇ .html</button>
+        <button id="export-txt" class="btn" type="button" data-icon="file-text" title="Download as plain text">.txt</button>
+        <button id="export-png" class="btn" type="button" data-icon="image" title="Download as PNG image">.png</button>
+        <button id="export-svg" class="btn" type="button" data-icon="diamond" title="Download as SVG image">.svg</button>
+        <button id="export-html" class="btn" type="button" data-icon="code" title="Download as standalone HTML page">.html</button>
       </div>
     </section>
   </main>
@@ -96,7 +96,10 @@
     Rendered locally in your browser with <a href="https://github.com/patorjk/figlet.js" target="_blank" rel="noopener">FIGlet.js</a> · fonts from the FIGlet community collection
   </footer>
 
-  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="toast" role="status" aria-live="polite">
+    <span class="toast-icon" data-icon="check"></span>
+    <span id="toast-msg"></span>
+  </div>
 
   <script type="module" src="app.js"></script>
 </body>

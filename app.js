@@ -3,6 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 import figlet from "./vendor/figlet.mjs";
+import { hydrateIcons, iconSvg } from "./icons.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -159,16 +160,22 @@ function renderList(query) {
     const d = document.createElement("div");
     d.className = "font-item";
     d.setAttribute("role", "option");
-    if (name === state.font) d.classList.add("current");
+    if (name === state.font) {
+      d.classList.add("current");
+      d.insertAdjacentHTML("beforeend", `<span class="font-check">${iconSvg("check", 13)}</span>`);
+    }
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "font-name";
     if (q) {
       const i = name.toLowerCase().indexOf(q);
-      d.append(name.slice(0, i));
+      nameSpan.append(name.slice(0, i));
       const m = document.createElement("mark");
       m.textContent = name.slice(i, i + q.length);
-      d.append(m, name.slice(i + q.length));
+      nameSpan.append(m, name.slice(i + q.length));
     } else {
-      d.textContent = name;
+      nameSpan.textContent = name;
     }
+    d.appendChild(nameSpan);
     d.addEventListener("mousedown", (e) => {
       e.preventDefault();
       selectFont(name);
@@ -243,7 +250,7 @@ function randomFont() {
 
 let toastTimer = null;
 function toast(msg) {
-  els.toast.textContent = msg;
+  $("toast-msg").textContent = msg;
   els.toast.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => els.toast.classList.remove("show"), 2000);
@@ -485,6 +492,7 @@ function bindEvents() {
 /* ───────── init ───────── */
 
 async function init() {
+  hydrateIcons();
   loadState();
 
   try {
