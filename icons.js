@@ -185,6 +185,8 @@ export function iconSvg(name, size = 16) {
 /** Prepend the matching icon to every element with a data-icon attribute. */
 export function hydrateIcons(root = document) {
   root.querySelectorAll("[data-icon]").forEach((el) => {
+    if (el.dataset.iconDone) return; // idempotent
+    el.dataset.iconDone = "1";
     el.insertAdjacentHTML("afterbegin", iconSvg(el.dataset.icon));
   });
 }

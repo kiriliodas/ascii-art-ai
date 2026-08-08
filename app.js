@@ -5,6 +5,9 @@
 import figlet from "./vendor/figlet.mjs";
 import { hydrateIcons, iconSvg } from "./icons.js";
 
+// Put the dot-matrix glyphs in place immediately, before anything else runs.
+hydrateIcons();
+
 const $ = (id) => document.getElementById(id);
 
 const els = {
@@ -492,7 +495,6 @@ function bindEvents() {
 /* ───────── init ───────── */
 
 async function init() {
-  hydrateIcons();
   loadState();
 
   try {
