@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Studio — Text to ASCII Art</title>
+  <meta name="description" content="Turn any text into ASCII art with 300+ font styles. Live preview, one-click copy, and export to TXT, PNG, SVG or HTML.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230d1117'/><text x='50' y='70' font-size='58' text-anchor='middle' font-family='monospace' fill='%233fb950'>A</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-wrap">
+      <pre id="logo" aria-label="ASCII Studio">ASCII Studio</pre>
+    </div>
+    <p class="tagline">text → ascii art · <strong id="font-count">300+</strong> font styles · copy &amp; export</p>
+  </header>
+
+  <main class="layout">
+    <!-- ══════════ Controls ══════════ -->
+    <section class="panel controls" aria-label="Controls">
+      <div class="field">
+        <label for="text-input">Your text</label>
+        <textarea id="text-input" rows="3" placeholder="Type something…" spellcheck="false">Hello World</textarea>
+      </div>
+
+      <div class="field">
+        <label for="font-input">Font style</label>
+        <div class="font-picker" id="font-picker">
+          <div class="font-picker-row">
+            <input id="font-input" type="text" autocomplete="off" spellcheck="false"
+                   role="combobox" aria-expanded="false" aria-controls="font-list"
+                   aria-autocomplete="list" placeholder="Search fonts…">
+            <button id="font-prev" class="icon-btn" type="button" title="Previous font" aria-label="Previous font">◀</button>
+            <button id="font-random" class="icon-btn" type="button" title="Random font" aria-label="Random font">🎲</button>
+            <button id="font-next" class="icon-btn" type="button" title="Next font" aria-label="Next font">▶</button>
+          </div>
+          <div id="font-list" class="font-list" role="listbox" aria-label="Fonts"></div>
+        </div>
+        <p class="hint">Search, or use ◀ 🎲 ▶ to browse styles</p>
+      </div>
+
+      <div class="field">
+        <label for="h-layout">Letter spacing</label>
+        <select id="h-layout">
+          <option value="default" selected>Default</option>
+          <option value="full">Full (widest)</option>
+          <option value="fitted">Fitted</option>
+          <option value="universal smushing">Smushed (narrowest)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="width">Max line width <span class="val" id="width-val">80</span></label>
+        <input type="range" id="width" min="40" max="300" step="5" value="80">
+        <label class="check"><input type="checkbox" id="wrap" checked> break long lines at word boundaries</label>
+      </div>
+
+      <div class="field">
+        <label for="preview-size">Preview size <span class="val" id="size-val">12px</span></label>
+        <input type="range" id="preview-size" min="6" max="32" step="1" value="12">
+      </div>
+    </section>
+
+    <!-- ══════════ Preview ══════════ -->
+    <section class="panel preview-panel" aria-label="Preview">
+      <div class="preview-toolbar">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="preview-status">…</span>
+        <div class="toolbar-actions">
+          <label class="theme-label" for="export-theme">Export theme</label>
+          <select id="export-theme">
+            <option value="terminal" selected>Terminal green</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-scroll">
+        <pre id="preview" aria-live="polite"></pre>
+      </div>
+
+      <div class="actions">
+        <button id="copy" class="btn primary" type="button">📋 Copy</button>
+        <span class="spacer" aria-hidden="true"></span>
+        <button id="export-txt" class="btn" type="button" title="Download as plain text">⬇ .txt</button>
+        <button id="export-png" class="btn" type="button" title="Download as PNG image">⬇ .png</button>
+        <button id="export-svg" class="btn" type="button" title="Download as SVG image">⬇ .svg</button>
+        <button id="export-html" class="btn" type="button" title="Download as standalone HTML page">⬇ .html</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Rendered locally in your browser with <a href="https://github.com/patorjk/figlet.js" target="_blank" rel="noopener">FIGlet.js</a> · fonts from the FIGlet community collection
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
